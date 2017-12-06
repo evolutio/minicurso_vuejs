@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>Meu primeiro aplicativo Vue</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="app">
+    YOYOYO {{ message }}
+  </div>
+
+  <script>
+
+    var meudata = {
+      message: 'Olá vue',
+    };
+
+    var app = new Vue({
+      el: '#app',
+      data: meudata,
+    });
+  </script>
+</body>
+</html>

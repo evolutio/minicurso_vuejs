@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>Object defineproperty</title>
+</head>
+<body>
+  <button onclick="vai()">Demonstra getters e setters</button>
+  <script>
+    function vai(){
+      var o = {}
+      o.a = 'oi'
+      Object.defineProperty(o, 'b', {
+        get: function(){
+          return 'tudo bem';
+        },
+      });
+      Object.defineProperty(o, 'c', {
+        get: function(){
+          console.log('pega c');
+          return this._c;
+        },
+        set: function(_c){
+          console.log('c agora eh '+_c);
+          this._c = _c;
+        }
+      });
+
+      function debuga(){
+        debugger;
+        o.c;
+      }
+
+
+    }
+  </script>
+</body>
+</html>
