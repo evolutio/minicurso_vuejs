@@ -1,5 +1,5 @@
 # minicurso_vuejs
-Minicurso - vue.js
+Minicurso - vue.js - [Vídeos no evolutio](http://evolutio.io/curso/minicurso_vuejs)
 
 Objetivos:
 
