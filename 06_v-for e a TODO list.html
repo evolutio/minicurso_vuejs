@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>Meu primeiro aplicativo Vue</title>
+  <script src="https://unpkg.com/vue"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <style type="text/css">
+    .risca {
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+<body>
+  <div id="app" class="container" style="padding: 20px;">
+    <div class="field">
+      <label class="label">Name</label>
+      <div class="control">
+        <input class="input" 
+          type="text" 
+          placeholder="Text input"
+          v-model="novatarefa"
+          @keyup.enter="add()">
+      </div>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>To-do</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="tarefa in tarefas">
+          <td><input type="checkbox" v-model="tarefa.feita"></td>
+          <td :class="{risca: tarefa.feita}">{{tarefa.tarefa}}</td>
+          <td><button @click="remove(tarefa)"><span class="icon has-text-info">
+            <i class="fa fa-trash-o"></i></span></button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        novatarefa: '',
+        tarefas: [
+          {tarefa: 'Lavar a roupa', feita: false},
+          {tarefa: 'Trocar a fralda do neném', feita: true},
+          {tarefa: 'Passear com o cachorro', feita: false},
+        ]
+      },
+      methods: {
+        add: function(){
+          this.tarefas.push({tarefa: this.novatarefa, 
+                             feita: false});
+        },
+        remove: function(tarefa){
+          var idx = this.tarefas.indexOf(tarefa);
+          this.tarefas.splice(idx, 1);
+        }
+      },
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>Meu primeiro aplicativo Vue</title>
+  <script src="https://unpkg.com/vue"></script>
+  <style type="text/css">
+    .bordinha {
+      border: solid;
+    }
+    .vermelho {
+      color: red;
+    }
+    .icone {
+      height: 30px;
+      width: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <input type="checkbox" v-model="v1">v1<br>
+    <input type="checkbox" v-model="v2">v2<br>
+    <input type="checkbox" v-model="v3">v3<br>
+    <input type="checkbox" v-model="v4">v4<br>
+    <span v-if="v1" 
+          :class="{bordinha: v3, vermelho: v4}">
+          vê ife</span><br>
+    <span v-show="v2">vê xou</span><br>
+    <img src="http://evolutio.io/media/images/vue.png" 
+         class="icone"
+         :style="{transform: 'rotate('+angulo+'deg)'}">
+    <button @click="roda()">RODA!</button>
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        v1: false,
+        v2: false,
+        v3: false,
+        v4: false,
+        angulo: 40,
+      },
+      methods: {
+        roda: function(){
+          var self = this;
+          setInterval(function(){
+            self.angulo++;
+          }, 10)
+        }
+      },
+    });
+  </script>
+</body>
+</html>
