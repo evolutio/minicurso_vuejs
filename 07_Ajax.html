@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>Meu primeiro aplicativo Vue</title>
+  <script src="https://unpkg.com/vue"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <style type="text/css">
+    .risca {
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+<body>
+  <div id="app" class="container" style="padding: 20px;">
+    <div class="field">
+      <label class="label">Github username</label>
+      <div class="control">
+        <input class="input" 
+          type="text" 
+          placeholder="Github username"
+          v-model="username"
+          @keyup.enter="listar_repositorios()">
+      </div>
+    </div>
+    <div class="control">
+      <label class="label">Selecione repositorio</label>
+      <div class="select" :class="{'is-loading': loading_repos}">
+        <select v-model="selected_repo" @change="listar_issues()">
+          <option :value="repo" v-for="repo in repos">{{repo.name}}</option>
+        </select>
+      </div>
+    </div>
+    <todo-table :tarefas="tarefas"></todo-table>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
+
+  <script src="./TODOTable.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        username: '',
+        tarefas: [],
+        repos: [],
+        selected_repo: null,
+        loading_repos: false,
+        // tarefas: [
+        //   {tarefa: 'Lavar a roupa', feita: false},
+        //   {tarefa: 'Trocar a fralda do neném', feita: true},
+        //   {tarefa: 'Passear com o cachorro', feita: false},
+        // ]
+      },
+      methods: {
+        listar_repositorios: function(){
+          var self = this;
+          self.loading_repos = true;
+          axios.get(`https://api.github.com/users/${this.username}/repos`).then(function(result){
+            self.repos = result.data;
+            self.loading_repos = false;
+          })
+        },
+        listar_issues: function(){
+          //https://api.github.com/repos/evolutio/minicurso_vuejs/issues
+          var self = this;
+          axios.get(`https://api.github.com/repos/${this.username}/${this.selected_repo.name}/issues`).then(function(result){
+            var issues = result.data;
+            self.tarefas = issues.map(function(issue){
+              return {tarefa: issue.title, feita: false}
+            });
+          })
+        }
+      },
+    });
+  </script>
+</body>
+</html>
