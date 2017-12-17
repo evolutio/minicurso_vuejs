@@ -1,18 +1,18 @@
-Obs:
+### Obs:
 - data é uma função.
   - https://br.vuejs.org/v2/guide/components.html#Opcao-data-Deve-Ser-uma-Funcao
 - meuComponente/minhaProperty vira <meu-componente minha-property="...">
   - https://br.vuejs.org/v2/guide/components.html#camelCase-vs-kebab-case
 
 
-Diretrizes:
+### Diretrizes:
 
 - Organizar sua aplicação como uma árvore de componentes.
   - https://br.vuejs.org/v2/guide/index.html#Composicao-com-Componentes
 - Dados descem (props), **eventos sobem**
   - https://br.vuejs.org/v2/guide/components.html#Usando-v-on-com-Eventos-Personalizados
 
-Perguntas:
+### Perguntas:
 
 - E se der "colisão" no nome de componentes? (Registro global vs. local)
   - https://br.vuejs.org/v2/guide/components.html#Registrando-Globalmente
