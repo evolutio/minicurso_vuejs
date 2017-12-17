@@ -1,7 +1,7 @@
 ### Obs:
 - data é uma função.
   - https://br.vuejs.org/v2/guide/components.html#Opcao-data-Deve-Ser-uma-Funcao
-- meuComponente/minhaProperty vira <meu-componente minha-property="...">
+- meuComponente/minhaProperty vira &lt;meu-componente minha-property="..."&gt;
   - https://br.vuejs.org/v2/guide/components.html#camelCase-vs-kebab-case
 
 
