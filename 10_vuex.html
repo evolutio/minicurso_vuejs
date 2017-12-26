@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>Meu primeiro aplicativo Vue</title>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/vuex"></script>
+</head>
+<body>
+  <div id="app">
+    <button @click="aumenta()">{{count}}</button>
+  </div>
+
+  <script src="./store.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'Olá Vue!'
+      },
+      computed: {
+        count: function(){
+          return this.$store.state.count;
+        }
+      },
+      methods: {
+        aumenta: function(){
+          this.$store.commit('increment');
+        }
+      },
+      store: window.STORE,
+    })
+  </script>
+</body>
+</html>
