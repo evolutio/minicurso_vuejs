@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>Meu primeiro aplicativo Vue</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@1.1.8/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <!-- // <script src="https://unpkg.com/vue"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@1.1.8/dist/vuetify.min.js"></script>
+  <script src="./GithubApiMock.js"></script>
+  <script src="./GithubIssues.js"></script>
+</head>
+<body>
+  <div id="app">
+    <v-app>
+      <v-content>
+        <v-container fluid>
+          <github-issues></github-issues>
+        </v-container>
+      </v-content>
+    </v-app>
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'Olá Vue!'
+      },
+      computed: {
+        count: function(){
+          return this.$store.state.count;
+        }
+      },
+      methods: {
+        aumenta: function(){
+          this.$store.commit('increment');
+        }
+      },
+      store: window.STORE,
+    })
+  </script>
+</body>
+</html>
